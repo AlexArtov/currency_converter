@@ -11,7 +11,7 @@ function Converter() {
     const firstKey = Object.keys(curensy)[0];
     const firstValue = curensy[firstKey];
 
-    const url =  `https://api.freecurrencyapi.com/v1/latest?apikey=fca_live_AFN5lDQngxQbpNzlcbkv9UsgT33HHG50fYOhYdJD&currencies=${currencies}&base_currency=${base_currency}`
+    const url =  `https://api.freecurrencyapi.com/v1/latest?apikey=${process.env.REACT_APP_API_KEY}&currencies=${currencies}&base_currency=${base_currency}`
 
     const CurrenciesHandleChanger = (event) => {
         setCurrencies(event.target.value); // Обновляем состояние выбранного значения
