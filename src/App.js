@@ -1,12 +1,11 @@
-import React, {useState} from "react";
+import React, from "react";
 import {
     Routes,
     Route,
-    Link
 } from "react-router-dom"
 import Converter from "./conmponents/Converter";
 import All_currencies from "./conmponents/All_currencies";
-import {Button, ButtonGroup, Col, Container, Placeholder, Row, Stack, Toast} from "react-bootstrap";
+import {Button, ButtonGroup, Container} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 

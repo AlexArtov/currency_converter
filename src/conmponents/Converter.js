@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import axios from "axios";
-import {Button, Col, Container, FloatingLabel, Form, InputGroup, Placeholder, Row} from "react-bootstrap";
+import {Button, Col, Container, FloatingLabel, Form, InputGroup, Row} from "react-bootstrap";
 
 function Converter() {
     const [quantity, setQuantity] = useState(0)
