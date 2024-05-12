@@ -16,8 +16,8 @@ function App() {
             <nav className="navigation">
                 <Container>
                     <ButtonGroup direction="horizontal" gap={3}>
-                        <Button type="radio" variant="outline-dark" href="/">Конвертер Валют</Button>
-                        <Button type="radio" variant="outline-dark" href="/about" >Все валюты</Button>
+                        <Button type="radio" variant="outline-dark" href="/currency_converter/">Конвертер Валют</Button>
+                        <Button type="radio" variant="outline-dark" href="/currency_converter/about" >Все валюты</Button>
                     </ButtonGroup>
                 </Container>
             </nav>
@@ -27,9 +27,7 @@ function App() {
                 <Route path="/about"  element={<All_currencies/>}></Route>
             </Routes>
             </Container>
-
         </div>
-
     );
 }
 
