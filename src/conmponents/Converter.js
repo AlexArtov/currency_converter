@@ -14,10 +14,10 @@ function Converter() {
     const url =  `https://api.freecurrencyapi.com/v1/latest?apikey=${process.env.REACT_APP_API_KEY}&currencies=${currencies}&base_currency=${base_currency}`
 
     const CurrenciesHandleChanger = (event) => {
-        setCurrencies(event.target.value); // Обновляем состояние выбранного значения
+        setCurrencies(event.target.value);
     };
     const base_currencyHandleChanger = (event) => {
-        setBase_currency(event.target.value); // Обновляем состояние выбранного значения
+        setBase_currency(event.target.value);
     };
 
     const searchQuantity = (event) => {
