@@ -17,6 +17,8 @@ function All_currencies() {
         })
     }
 
+    const curensyKeysArray = Object.keys(curensyForAll);
+
     useEffect(() => {
     searchQuantityForAll()
     }, []);
@@ -39,177 +41,26 @@ function All_currencies() {
                 </Row>
                 <h3 className="my-3">Курсы валют</h3>
                 <Row>
-                    <Col md={4}>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">EUR - Euro</div>
-                            <div className="ms-auto">{curensyForAll.EUR}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">USD -	US Dollar</div>
-                            <div className="ms-auto">{curensyForAll.USD}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">JPY - Japanese Yen</div>
-                            <div className="ms-auto"> {curensyForAll.JPY}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">BGN -	Bulgarian Lev</div>
-                            <div className="ms-auto">{curensyForAll.BGN}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">CZK -	Czech Republic Koruna</div>
-                            <div className="ms-auto">{curensyForAll.CZK}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">DKK -	Danish Krone</div>
-                            <div className="ms-auto">{curensyForAll.DKK}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">GBP -	British Pound Sterling</div>
-                            <div className="ms-auto">{curensyForAll.GBP}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">HUF -	Hungarian Forint</div>
-                            <div className="ms-auto">{curensyForAll.HUF}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">PLN -	Polish Zloty</div>
-                            <div className="ms-auto">{curensyForAll.PLN}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">RON -	Romanian Leu</div>
-                            <div className="ms-auto">{curensyForAll.RON}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">SEK -	Swedish Krona</div>
-                            <div className="ms-auto">{curensyForAll.SEK}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">CHF -	Swiss Franc</div>
-                            <div className="ms-auto">{curensyForAll.CHF}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                    </Col>
-                    <Col md={4}>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">ISK -	Icelandic Króna </div>
-                            <div className="ms-auto">{curensyForAll.ISK}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">NOK -	Norwegian Krone</div>
-                            <div className="ms-auto">{curensyForAll.NOK}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">HRK -	Croatian Kuna</div>
-                            <div className="ms-auto">{curensyForAll.HRK}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">RUB -	Russian Ruble </div>
-                            <div className="ms-auto">{curensyForAll.RUB}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">TRY -	Turkish Lira</div>
-                            <div className="ms-auto">{curensyForAll.TRY}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2"> AUD - Australian Dollar</div>
-                            <div className="ms-auto">{curensyForAll.AUD}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">BRL -	Brazilian Real</div>
-                            <div className="ms-auto">{curensyForAll.BRL}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">CAD -	Canadian Dollar</div>
-                            <div className="ms-auto">{curensyForAll.CAD}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">CNY -	Chinese Yuan</div>
-                            <div className="ms-auto">{curensyForAll.CNY}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">HKD -	Hong Kong Dollar</div>
-                            <div className="ms-auto">{curensyForAll.HKD}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">IDR -	Indonesian Rupiah</div>
-                            <div className="ms-auto">{curensyForAll.IDR}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">ILS -	Israeli New Sheqel</div>
-                            <div className="ms-auto">{curensyForAll.ILS}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                    </Col>
-                    <Col md={4}>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">INR -	Indian Rupee </div>
-                            <div className="ms-auto">{curensyForAll.INR}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">KRW -	South Korean Won </div>
-                            <div className="ms-auto">{curensyForAll.KRW}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">MXN -	Mexican Peso </div>
-                            <div className="ms-auto">{curensyForAll.MXN}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">MYR -	Malaysian Ringgit </div>
-                            <div className="ms-auto">{curensyForAll.MYR}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">NZD -	New Zealand Dollar</div>
-                            <div className="ms-auto">{curensyForAll.NZD}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">PHP -	Philippine Peso</div>
-                            <div className="ms-auto">{curensyForAll.PHP}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">SGD -	Singapore Dollar </div>
-                            <div className="ms-auto">{curensyForAll.SGD}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">THB -	Thai Baht </div>
-                            <div className="ms-auto">{curensyForAll.THB}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                        <Stack direction="horizontal">
-                            <div className="pb-2">ZAR -	South African Rand </div>
-                            <div className="ms-auto">{curensyForAll.ZAR}</div>
-                        </Stack>
-                        <hr className="mt-1"/>
-                    </Col>
+                    {curensyKeysArray.reduce((acc, key, index) => {
+                        const chunkIndex = Math.floor(index / 11);
+                        if (!acc[chunkIndex]) {
+                            acc[chunkIndex] = [];
+                        }
+                        acc[chunkIndex].push(
+                            <React.Fragment key={index}>
+                                <Stack direction="horizontal">
+                                    <div className="pb-2">{key}</div>
+                                    <div className="ms-auto">{curensyForAll[key]}</div>
+                                </Stack>
+                                <hr className="mt-1" />
+                            </React.Fragment>
+                        );
+                        return acc;
+                    }, []).map((column, index) => (
+                        <Col key={index} md={4}>
+                            {column}
+                        </Col>
+                    ))}
                 </Row>
             </div>
         </Container>
