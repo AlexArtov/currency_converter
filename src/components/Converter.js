@@ -5,8 +5,8 @@ import {Button, Col, Container, FloatingLabel, Form, InputGroup, Row} from "reac
 function Converter() {
     const [quantity, setQuantity] = useState(0)
     const [curensy, setCurensy] = useState({})
-    const [currencies, setCurrencies] = useState('');
-    const [base_currency, setBase_currency] = useState('');
+    const [currencies, setCurrencies] = useState('RUB');
+    const [base_currency, setBase_currency] = useState('USD');
 
     const firstKey = Object.keys(curensy)[0];
     const firstValue = curensy[firstKey];
@@ -48,7 +48,6 @@ function Converter() {
                 <Col xs={3}>
                 <FloatingLabel controlId="floatingSelect" label="Из" value={base_currency} onChange={base_currencyHandleChanger}>
                     <Form.Select aria-label="Из">
-                        <option value="">Выберите значение</option>
                         <option value="RUB">Russian Ruble</option>
                         <option value="EUR">Euro</option>
                     </Form.Select>
@@ -57,11 +56,10 @@ function Converter() {
                 <Col xs={3}>
                     <FloatingLabel controlId="floatingSelect" label="В" value={currencies} onChange={CurrenciesHandleChanger}>
                         <Form.Select aria-label="в" className="mb-3">
-                            <option value="">Выберите значение</option>
+                            <option value="USD">US Dollar</option>
                             <option value="RUB">Russian Ruble</option>
                             <option value="CAD">Canadian Dollar</option>
                             <option value="EUR">Euro</option>
-                            <option value="USD">US Dollar</option>
                         </Form.Select>
                     </FloatingLabel>
                 </Col>

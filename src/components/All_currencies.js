@@ -29,7 +29,7 @@ function All_currencies() {
                 <Row>
                     <Col xs={6}>
                         <InputGroup  className="mb-3" >
-                            <FloatingLabel controlId="floatingSelect" label="Выбирите базовую валюту">
+                            <FloatingLabel controlId="floatingSelect" label="Выберите базовую валюту">
                                 <Form.Select value={base_currencyForAll} onChange={base_currencyHandleChangerForAll}>
                                     <option value="RUB">Russian Ruble</option>
                                     <option value="EUR">Euro</option>

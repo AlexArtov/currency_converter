@@ -3,8 +3,8 @@ import {
     Routes,
     Route,
 } from "react-router-dom"
-import Converter from "./conmponents/Converter";
-import All_currencies from "./conmponents/All_currencies";
+import Converter from "./components/Converter";
+import All_currencies from "./components/All_currencies";
 import {Button, ButtonGroup, Container} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
