@@ -1,36 +1,53 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import {Button, Col, Container, FloatingLabel, Form, InputGroup, Row} from "react-bootstrap";
+import FormSelectCurrensy from "./FormSelectCurrensy";
 
-function Converter() {
-    const [quantity, setQuantity] = useState(0)
-    const [curensy, setCurensy] = useState({})
+
+function Converter({value, mainCurrensyValue}) {
+    const [quantity, setQuantity] = useState(1)
     const [currencies, setCurrencies] = useState('RUB');
-    const [base_currency, setBase_currency] = useState('USD');
-
-    const firstKey = Object.keys(curensy)[0];
-    const firstValue = curensy[firstKey];
+    const [Currensy, setCurrensy] = useState({})
+    const [base_currency, setBase_currency] = useState(mainCurrensyValue);
 
     const url =  `https://api.freecurrencyapi.com/v1/latest?apikey=${process.env.REACT_APP_API_KEY}&currencies=${currencies}&base_currency=${base_currency}`
 
-    const CurrenciesHandleChanger = (event) => {
-        setCurrencies(event.target.value);
-    };
     const base_currencyHandleChanger = (event) => {
         setBase_currency(event.target.value);
     };
 
-    const searchQuantity = (event) => {
-        axios.get(url).then((response) =>{
-            setCurensy(response.data.data)
-            console.log(response.data.data)
-        })
-    }
+    const CurrenciesHandleChanger = (event) => {
+        setCurrencies(event.target.value);
+    };
+
+    const searchQuantity = () => {
+        setTimeout(() => {
+            axios.get(url).then((response) => {
+                setCurrensy(response.data.data)
+            });
+        }, 1000);
+    };
+
+    useEffect(() => {
+        searchQuantity();
+    }, [currencies, base_currency]);
+
+    const firstKey = Object.keys(Currensy)[0];
+    const firstValue = Currensy[firstKey];
+
+    const handleSwap = () => {
+        setCurrencies(base_currency);
+        setBase_currency(currencies);
+    };
+
+    useEffect(() => {
+        setBase_currency(mainCurrensyValue)
+    }, [mainCurrensyValue]);
 
     return(
         <Container className="Home">
             <h1 className="my-3">Конвертер валют</h1>
-            <Row>
+            <Row >
                 <Col xs={6}>
                     <InputGroup  className="mb-3" >
                         <Form.Control
@@ -38,33 +55,27 @@ function Converter() {
                             aria-label="Введите сумму"
                             onChange={event => setQuantity(event.target.value)}
                             type="number"
+                            value={quantity}
                         />
-                        <Button type="radio" variant="primary" onClick={searchQuantity} xs={6}>Посчитать курс</Button>
+                        {/*<Button type="radio" variant="primary" onClick={searchQuantity} xs={6}>Посчитать курс</Button>*/}
                     </InputGroup>
                 </Col>
             </Row>
-            <p>Выбирите валюты</p>
-            <Row>
+            <p>Выберите валюты</p>
+            <Row className='mb-3'>
                 <Col xs={3}>
                 <FloatingLabel controlId="floatingSelect" label="Из" value={base_currency} onChange={base_currencyHandleChanger}>
-                    <Form.Select aria-label="Из">
-                        <option value="RUB">Russian Ruble</option>
-                        <option value="EUR">Euro</option>
-                    </Form.Select>
+                    <FormSelectCurrensy value={value} baseValue={base_currency}/>
                 </FloatingLabel>
                 </Col>
                 <Col xs={3}>
-                    <FloatingLabel controlId="floatingSelect" label="В" value={currencies} onChange={CurrenciesHandleChanger}>
-                        <Form.Select aria-label="в" className="mb-3">
-                            <option value="USD">US Dollar</option>
-                            <option value="RUB">Russian Ruble</option>
-                            <option value="CAD">Canadian Dollar</option>
-                            <option value="EUR">Euro</option>
-                        </Form.Select>
+                    <FloatingLabel controlId="floatingSelect" label="В" value={currencies} onChange={CurrenciesHandleChanger} onBlur={searchQuantity}>
+                        <FormSelectCurrensy value={value} baseValue={currencies}/>
                     </FloatingLabel>
                 </Col>
             </Row>
-            <p>Итог: {firstValue ? <h1>{firstValue * quantity} {currencies}</h1> : <p></p>}</p>
+            <Button className='mb-3' onClick={handleSwap}> Поменять значения местами</Button>
+            <p> {firstValue ? <h1>Итог: {firstValue * quantity}</h1> : <p></p>}</p>
         </Container>);
 }
 

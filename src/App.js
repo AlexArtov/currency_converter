@@ -1,29 +1,60 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {
     Routes,
     Route,
 } from "react-router-dom"
 import Converter from "./components/Converter";
 import All_currencies from "./components/All_currencies";
-import {Button, ButtonGroup, Container} from "react-bootstrap";
+import {Button, ButtonGroup, Col, Container, FloatingLabel, Form, InputGroup, Row} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import axios from "axios";
+import FormSelectCurrensy from "./components/FormSelectCurrensy";
+
 
 
 function App() {
+    const [mainCurrensy, setMainCurrensy] = useState(localStorage.getItem('mainCurrensy') || 'EUR')
+    const [allСurrencies, setAllСurrencies] = useState({});
+    const urlAllСurrencies =`https://api.freecurrencyapi.com/v1/currencies?apikey=fca_live_AFN5lDQngxQbpNzlcbkv9UsgT33HHG50fYOhYdJD&currencies=`
+
+    useEffect(() => {
+        searchQuantityForAll()
+    }, []);
+    const searchQuantityForAll = (event) => {
+        setTimeout(() => {
+        axios.get(urlAllСurrencies).then((response) =>{
+            setAllСurrencies(response.data.data)
+        })
+        }, 500);
+    };
+
+    const mainCurrensyHandler = (event) => {
+        const newValue = event.target.value;
+        setMainCurrensy(newValue)
+        localStorage.setItem('mainCurrensy', newValue)
+    }
+
     return (
         <div className="app">
             <nav className="navigation">
                 <Container>
-                    <ButtonGroup direction="horizontal" gap={3}>
-                        <Button type="radio" variant="outline-dark" href="/currency_converter/">Конвертер Валют</Button>
-                        <Button type="radio" variant="outline-dark" href="/currency_converter/about" >Все валюты</Button>
-                    </ButtonGroup>
+                    <Row>
+                        <Col>
+                            <ButtonGroup direction="horizontal" gap={3}>
+                                <Button type="radio" variant="outline-dark" href="/currency_converter/">Конвертер Валют</Button>
+                                <Button type="radio" variant="outline-dark" href="/currency_converter/about" >Все валюты</Button>
+                            </ButtonGroup>
+                        </Col>
+                        <Col xs={3}>
+                                <FormSelectCurrensy value={allСurrencies} baseValue={mainCurrensy} onChange={mainCurrensyHandler}/>
+                        </Col>
+                    </Row>
                 </Container>
             </nav>
             <Container maxWidth="lg">
             <Routes>
-                <Route path="/" exact  element={<Converter/>}></Route>
-                <Route path="/about"  element={<All_currencies/>}></Route>
+                <Route path="/" exact  element={<Converter value={allСurrencies} mainCurrensyValue={mainCurrensy}/>}></Route>
+                <Route path="/about"  element={<All_currencies value={allСurrencies} mainCurrensyValue={mainCurrensy}/>}></Route>
             </Routes>
             </Container>
         </div>
