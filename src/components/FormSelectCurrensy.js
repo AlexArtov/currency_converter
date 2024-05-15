@@ -1,8 +1,6 @@
 import {Form} from "react-bootstrap";
 import React from "react";
 
-
-
 function FromSelectCurrensy({value, baseValue, onChange}) {
 
     const allСurrencies = {value}
@@ -22,6 +20,6 @@ function FromSelectCurrensy({value, baseValue, onChange}) {
             ))}
         </Form.Select>
     )
-}
+};
 
 export default FromSelectCurrensy;

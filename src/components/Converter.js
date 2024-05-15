@@ -3,14 +3,24 @@ import axios from "axios";
 import {Button, Col, Container, FloatingLabel, Form, InputGroup, Row} from "react-bootstrap";
 import FormSelectCurrensy from "./FormSelectCurrensy";
 
-
 function Converter({value, mainCurrensyValue}) {
     const [quantity, setQuantity] = useState(1)
     const [currencies, setCurrencies] = useState('RUB');
     const [Currensy, setCurrensy] = useState({})
     const [base_currency, setBase_currency] = useState(mainCurrensyValue);
 
+    const firstKey = Object.keys(Currensy)[0];
+    const firstValue = Currensy[firstKey];
+
     const url =  `https://api.freecurrencyapi.com/v1/latest?apikey=${process.env.REACT_APP_API_KEY}&currencies=${currencies}&base_currency=${base_currency}`
+
+    const searchQuantity = () => {
+        setTimeout(() => {
+            axios.get(url).then((response) => {
+                setCurrensy(response.data.data)
+            });
+        }, 500);
+    };
 
     const base_currencyHandleChanger = (event) => {
         setBase_currency(event.target.value);
@@ -19,26 +29,15 @@ function Converter({value, mainCurrensyValue}) {
     const CurrenciesHandleChanger = (event) => {
         setCurrencies(event.target.value);
     };
-
-    const searchQuantity = () => {
-        setTimeout(() => {
-            axios.get(url).then((response) => {
-                setCurrensy(response.data.data)
-            });
-        }, 1000);
+    const handleSwap = () => {
+        setCurrencies(base_currency);
+        setBase_currency(currencies);
     };
 
     useEffect(() => {
         searchQuantity();
     }, [currencies, base_currency]);
 
-    const firstKey = Object.keys(Currensy)[0];
-    const firstValue = Currensy[firstKey];
-
-    const handleSwap = () => {
-        setCurrencies(base_currency);
-        setBase_currency(currencies);
-    };
 
     useEffect(() => {
         setBase_currency(mainCurrensyValue)
@@ -57,7 +56,6 @@ function Converter({value, mainCurrensyValue}) {
                             type="number"
                             value={quantity}
                         />
-                        {/*<Button type="radio" variant="primary" onClick={searchQuantity} xs={6}>Посчитать курс</Button>*/}
                     </InputGroup>
                 </Col>
             </Row>
@@ -69,7 +67,7 @@ function Converter({value, mainCurrensyValue}) {
                 </FloatingLabel>
                 </Col>
                 <Col xs={3}>
-                    <FloatingLabel controlId="floatingSelect" label="В" value={currencies} onChange={CurrenciesHandleChanger} onBlur={searchQuantity}>
+                    <FloatingLabel controlId="floatingSelect" label="В" value={currencies} onChange={CurrenciesHandleChanger}>
                         <FormSelectCurrensy value={value} baseValue={currencies}/>
                     </FloatingLabel>
                 </Col>
@@ -77,6 +75,6 @@ function Converter({value, mainCurrensyValue}) {
             <Button className='mb-3' onClick={handleSwap}> Поменять значения местами</Button>
             <p> {firstValue ? <h1>Итог: {firstValue * quantity}</h1> : <p></p>}</p>
         </Container>);
-}
+};
 
 export default Converter;

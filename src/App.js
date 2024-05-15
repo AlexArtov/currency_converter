@@ -4,35 +4,34 @@ import {
     Route,
 } from "react-router-dom"
 import Converter from "./components/Converter";
-import All_currencies from "./components/All_currencies";
-import {Button, ButtonGroup, Col, Container, FloatingLabel, Form, InputGroup, Row} from "react-bootstrap";
+import AllCurrencies from "./components/AllCurrencies";
+import {Button, ButtonGroup, Col, Container, Row} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
 import FormSelectCurrensy from "./components/FormSelectCurrensy";
-
-
 
 function App() {
     const [mainCurrensy, setMainCurrensy] = useState(localStorage.getItem('mainCurrensy') || 'EUR')
     const [allСurrencies, setAllСurrencies] = useState({});
     const urlAllСurrencies =`https://api.freecurrencyapi.com/v1/currencies?apikey=fca_live_AFN5lDQngxQbpNzlcbkv9UsgT33HHG50fYOhYdJD&currencies=`
 
-    useEffect(() => {
-        searchQuantityForAll()
-    }, []);
     const searchQuantityForAll = (event) => {
         setTimeout(() => {
         axios.get(urlAllСurrencies).then((response) =>{
             setAllСurrencies(response.data.data)
         })
-        }, 500);
+        }, 100);
     };
 
     const mainCurrensyHandler = (event) => {
         const newValue = event.target.value;
         setMainCurrensy(newValue)
         localStorage.setItem('mainCurrensy', newValue)
-    }
+    };
+
+    useEffect(() => {
+        searchQuantityForAll()
+    }, []);
 
     return (
         <div className="app">
@@ -46,7 +45,7 @@ function App() {
                             </ButtonGroup>
                         </Col>
                         <Col xs={3}>
-                                <FormSelectCurrensy value={allСurrencies} baseValue={mainCurrensy} onChange={mainCurrensyHandler}/>
+                            <FormSelectCurrensy value={allСurrencies} baseValue={mainCurrensy} onChange={mainCurrensyHandler}/>
                         </Col>
                     </Row>
                 </Container>
@@ -54,12 +53,12 @@ function App() {
             <Container maxWidth="lg">
             <Routes>
                 <Route path="/" exact  element={<Converter value={allСurrencies} mainCurrensyValue={mainCurrensy}/>}></Route>
-                <Route path="/about"  element={<All_currencies value={allСurrencies} mainCurrensyValue={mainCurrensy}/>}></Route>
+                <Route path="/about"  element={<AllCurrencies value={allСurrencies} mainCurrensyValue={mainCurrensy}/>}></Route>
             </Routes>
             </Container>
         </div>
     );
-}
+};
 
 export default App;
 
