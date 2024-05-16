@@ -27,6 +27,10 @@ function Converter({value, mainCurrensyValue, setError}) {
                 } else {
                     // Обработка других ошибок
                     console.error('Ошибка:', error.message);
+                    setTimeout(()=> {
+                        setError(null)
+                        searchQuantity()
+                    },60000)
                 };
             });
             setLoading(false)

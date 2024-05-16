@@ -26,6 +26,10 @@ function AllCurrencies({value, mainCurrensyValue, setError}) {
                 } else {
                     // Обработка других ошибок
                     console.error('Ошибка:', error.message);
+                    setTimeout(()=> {
+                        setError(null)
+                        searchQuantityForAll()
+                    },60000)
                 };
         });
         setLoading(false)
