@@ -16,6 +16,7 @@ function App() {
     const [allСurrencies, setAllСurrencies] = useState({});
     const urlAllСurrencies =`https://api.freecurrencyapi.com/v1/currencies?apikey=fca_live_AFN5lDQngxQbpNzlcbkv9UsgT33HHG50fYOhYdJD&currencies=`
     const [error, setError] = useState(null);
+
     const searchQuantityForAll = (event) => {
         setTimeout(() => {
         axios.get(urlAllСurrencies).then((response) =>{
@@ -74,6 +75,7 @@ function App() {
         </div>
     );
 };
+
 
 export default App;
 
