@@ -1,4 +1,4 @@
-import {Form} from "react-bootstrap";
+import FormSelect from 'react-bootstrap/FormSelect';
 import React from "react";
 
 function FromSelectCurrensy({value, baseValue, onChange}) {
@@ -11,14 +11,14 @@ function FromSelectCurrensy({value, baseValue, onChange}) {
         code: allСurrencies.value[key].code
     }));
 
-    return(
-        <Form.Select value={baseValue} onChange={onChange}>
+    return (
+        <FormSelect value={baseValue} onChange={onChange}>
             {currencyOptions.map(option => (
-                <option key={option.code} value={option.code}>
-                     {option.name} ({option.code})
+                <option value={option.code}>
+                    {option.name} ({option.code})
                 </option>
             ))}
-        </Form.Select>
+        </FormSelect>
     )
 };
 

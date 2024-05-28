@@ -1,8 +1,12 @@
+import {Row} from "react-bootstrap";
+
 function Loader() {
     return (
-        <div className="loader">
-            Loading...
-        </div>
+        <Row>
+            <div className="spinner-border" role="status">
+                <span className="visually-hidden">Loading...</span>
+            </div>
+        </Row>
     );
 }
 
